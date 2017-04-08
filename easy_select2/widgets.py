@@ -96,14 +96,14 @@ class Select2Mixin(object):
             return mark_safe(self.html.format(id=id_, options=options))
         return u''
 
-    def render(self, *args, **kwargs):
+    def render(self, name, value, attrs):
         """
         Extend base class's `render` method by appending
         javascript inline text to html output.
         """
-        output = super(Select2Mixin, self).render(*args, **kwargs)
-        id_ = kwargs['attrs']['id']
-        output += self.render_js_code(id_, *args, **kwargs)
+        output = super(Select2Mixin, self).render(name, value, attrs)
+        id_ = attrs['id']
+        output += self.render_js_code(id_, name, value, attrs)
 
         return mark_safe(output)
 
